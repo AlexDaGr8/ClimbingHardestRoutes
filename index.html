@@ -3,6 +3,7 @@
     <script src="//d3js.org/d3.v4.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="http://d3js.org/topojson.v2.min.js"></script>
+    <script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
     <script>
         var margin = {top:20,right:20,bottom:20,left:20},
             width = 960 - margin.right - margin.left,
@@ -10,27 +11,37 @@
         var svg = d3.select('body').append('svg')
             .attr('width', width + margin.right + margin.left)
             .attr('height', height + margin.top + margin.bottom)
-            .append('g')
+            //.style('background', 'black')
+        var g = svg.append('g')
             .attr('transform', 'translate(' + [margin.left, margin.top] + ')');
 
         var projection = d3.geoMercator()
-            .scale(120)
+            .scale(140)
             .translate([width/2,height/2]);
         var path = d3.geoPath().projection(projection);
         var graticule = d3.geoGraticule();
 
         var color = d3.scaleOrdinal(d3.schemeCategory20);
+        var grade = d3.scaleOrdinal(d3.schemeSet1);
+        var tops = d3.scaleLinear().range([1,10]);
 
-        svg.append('path')
+        var zoom = d3.zoom()
+            .scaleExtent([1, 40])
+            .translateExtent([[-100, -100], [width + 90, height + 100]])
+            .on("zoom", zoomed);
+
+        g.append('path')
             .datum(graticule)
             .attr('fill', 'none')
             .attr('stroke', '#333')
             .attr('stroke-width', .2)
-            .attr('d', path)
+            .attr('d', path);
+
+        svg.call(zoom)
 
         queue()
             .defer(d3.json, "world.json")
-            .defer(d3.csv, "climbingLatLon.csv")
+            .defer(d3.json, "data.json")
             .await(render);
 
         function render (err,world,climbing) {
@@ -40,7 +51,7 @@
             var countries = topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; })
             
             // Color the coutries
-            // svg.append('g')
+            // g.append('g')
             //     .attr('class', 'countries')
             //     .selectAll('path.country')
             //     .data(land.features)
@@ -49,20 +60,51 @@
             //         .attr('stroke', '#333')
             //         .attr('stroke-width', .5)
             //         .attr('fill', (d) => {console.log(d); return color(d.id);})
-            
-            svg.append('path')
+         
+            g.append('path')
                 .datum(land)
-                .attr('fill', '#ddd')
-                .attr('stroke', '#333')
-                .attr('stroke-width', 1)
+                .attr('fill', '#333')
+                .attr('stroke', '#fff')
+                .attr('stroke-width', .1)
                 .attr('d', path)  
+            
+            tops.domain(d3.extent(climbing, (d) => d.Ascensionists.length))
 
-            svg.selectAll('circle')
-                .data(climbing)
+            g.selectAll('circle')
+                .data(climbing.sort((a,b) => -a.Ascensionists.length + b.Ascensionists.length ))
                 .enter().append('circle')
                 .attr('cx', (d) => projection([d.longitude,d.latitude])[0])
                 .attr('cy', (d) => projection([d.longitude,d.latitude])[1])
-                .attr('r', 2)
+                .attr('r', (d) => tops(d.Ascensionists.length))
+                .attr('fill', (d) => grade(d.Grade))
+                .attr('stroke', 'black')
+                .attr('stroke-width', .1)
+                .style('opacity', .5)
+
+            legend(climbing);
+        }
+        function legend(data) {
+            var nest = d3.nest().key((d) => d.Grade).entries(data);
+            var item = g.append('g')    
+                .attr('transform', (d,i) => 'translate(' + margin.left + ',' + height/2  + ')')
+            .selectAll('g.legend')
+                .data(nest)
+                .enter().append('g')
+                .attr('class', 'legend')
+                .attr('transform', (d,i) => 'translate(' + 10 + ',' + 17 * i + ')');
+            item.append('circle')
+                .attr('cx', 0)
+                .attr('cy', 0)
+                .attr('r', 6)
+                .attr('fill', (d) => grade(d.key))            
+            item.append('text')
+                .attr('x', 15)
+                .attr('y', 5)
+                .text((d) => d.key)
+
+        }
+        function zoomed() {
+            g.attr("transform", d3.event.transform);
         }
     </script>
 </body>
