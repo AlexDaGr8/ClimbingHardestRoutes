@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<body>
+    <script src="//d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v2.min.js"></script>
+    <script>
+        var margin = {top:20,right:20,bottom:20,left:20},
+            width = 960 - margin.right - margin.left,
+            height = 500 - margin.top - margin.left;
+        var svg = d3.select('body').append('svg')
+            .attr('width', width + margin.right + margin.left)
+            .attr('height', height + margin.top + margin.bottom)
+            .append('g')
+            .attr('transform', 'translate(' + [margin.left, margin.top] + ')');
+
+        var projection = d3.geoMercator()
+            .scale(120)
+            .translate([width/2,height/2]);
+        var path = d3.geoPath().projection(projection);
+        var graticule = d3.geoGraticule();
+
+        var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+        svg.append('path')
+            .datum(graticule)
+            .attr('fill', 'none')
+            .attr('stroke', '#333')
+            .attr('stroke-width', .2)
+            .attr('d', path)
+
+        queue()
+            .defer(d3.json, "world.json")
+            .defer(d3.csv, "climbingLatLon.csv")
+            .await(render);
+
+        function render (err,world,climbing) {
+            if (err) throw(err);
+            console.log(world)
+            var land = topojson.feature(world, world.objects.countries);
+            var countries = topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; })
+            
+            // Color the coutries
+            // svg.append('g')
+            //     .attr('class', 'countries')
+            //     .selectAll('path.country')
+            //     .data(land.features)
+            //         .enter().append('path')
+            //         .attr('d', path)
+            //         .attr('stroke', '#333')
+            //         .attr('stroke-width', .5)
+            //         .attr('fill', (d) => {console.log(d); return color(d.id);})
+            
+            svg.append('path')
+                .datum(land)
+                .attr('fill', '#ddd')
+                .attr('stroke', '#333')
+                .attr('stroke-width', 1)
+                .attr('d', path)  
+
+            svg.selectAll('circle')
+                .data(climbing)
+                .enter().append('circle')
+                .attr('cx', (d) => projection([d.longitude,d.latitude])[0])
+                .attr('cy', (d) => projection([d.longitude,d.latitude])[1])
+                .attr('r', 2)
+        }
+    </script>
+</body>

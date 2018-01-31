@@ -1,59 +1,60 @@
 Country,Crag,latitude,longitude
 Australia,Grampians,-36.894885,142.385602
-Austria,Gotterwandl,47.317212,10.821244
-,Zillertal,47.065406,11.752217
-,Schleierwasserfall, 47.545307,12.362505
-,Achleiten,47.531961,12.19402
-Canada,Canmore,,
-,Echo Valley,,
-Chile,Socaire,,
-Czech Republic,Sloup,,
-,Moravsky Kras,,
-France,Charente,,
-,Mollans,,
-,Saint Victoire,,
-,Ceuse,,
-,La Balme de Yenne,,
-,Saint-Pierre en Fracigny,,
-,Pic St Loup,,
-,Lourmarin,,
-,Entraygues,,
-,Saint Leger du Ventoux,,
-,Pierrot Beach,,
-Germany,Frankenjura,,
-Italy,Andonno,,
-,Arco,,
-,Domusnovas,,
-,Cornalba,,
-,Camaiore,,
-,Massone,,
-Malaysia,Mont Kinabalu,,
-Norway,Flatanger,,
-,Hell,,
-Slovakia,Alternativna stena,,
-Slovenia,Misja Pec,,
-,Golobove Pecine,,
-Spain,Oliana,"42° 4' 40"" N","1° 17' 16"" E"
-,La Cova de l'Ocell,,
-,Rodellar,,
-,Villanueva del Rosario,36.981082,-4.342002
-,Margelef,,
-,Siurana,,
-,Santa Linya,,
-,Mallorca,,
-,Fraguel,,
-,Cuenca,,
-,Santana,,
-,Montserrat,,
-Switzerland,Charmey,,
-,Gastlosen,,
-,Jensegg,,
-,Rawyl,,
-,Chli Schijen,,
-United Kingdom,Malham Cove,,
-,Cheedale Cornice,,
-,Malham,,
-,Giggleswick,,
-USA,Clark Mountain,"35° 31' 44"" N","115° 34' 21"" W"
-,Fortress of Solitude,,
-,Rumney,,
+Austria,G√∂tterwandl,47.317212,10.821244
+Austria,Zillertal,47.065406,11.752217
+Austria,Schleierwasserfall,47.545307,12.362505
+Austria,Achleiten,47.531961,12.19402
+Canada,Canmore,51.271544,-115.492487
+Canada,Echo Valley,49.906613,-123.161309
+Chile,Socaire,-23.616845,-67.854084
+Czech Republic,Sloup,49.410742,16.738843
+Czech Republic,Moravsky Kras,49.401786,16.776209
+France,Charente,45.688651,0.419542
+France,Mollans,44.242828,5.20355
+France,Sainte Victoire,43.528488,5.608094
+France,Ce√ºse,44.496592,5.944097
+France,La Balme de Yenne,45.708073,5.724851
+France,Saint-Pierre en Faucigny,46.039922,6.386307
+France,Pic St Loup,43.778632,3.810405
+France,Lourmarin,43.774789,5.352532
+France,Entraygues,44.829568,6.407776
+France,Saint L√©ger du Ventoux,44.215504,5.246519
+France,Pierrot Beach,45.071421,5.400726
+Germany,Frankenjura,49.717461,11.354732
+Italy,Andonno,44.299757,7.435945
+Italy,Arco,45.929692,10.9034
+Italy,Domusnovas,39.345444,8.624643
+Italy,Cornalba,45.855586,9.751697
+Italy,Camaiore,43.965562,10.314059
+Italy,Massone,45.929692,10.9034
+Malaysia,Mont Kinabalu,6.073219,116.561594
+Norway,Flatanger,64.490603,10.818529
+Norway,Hell,63.441684,10.950451
+Slovakia,Alternat√≠vna stena,48.47322,17.275915
+Slovenia,Mi≈°ja Peƒç,45.5679,13.864124
+Slovenia,Golobove Pecine,46.149904,15.308759
+Spain,Oliana,42.077914,1.28804
+Spain,La Cova de l'Ocell,41.745962,2.190024
+Spain,Rodellar,42.286612,-0.081925
+Spain,Villanueva del Rosario,36.981082,-4.342002
+Spain,Villanueva de Rosario,36.981082,-4.342002
+Spain,Margalef,41.297608,0.776135
+Spain,Siurana,41.258868,0.937394
+Spain,Santa Linya,41.925998,0.81187
+Spain,Mallorca,39.930226,3.111137
+Spain,Fraguel,39.697649,2.718923
+Spain,Cuenca,40.087134,-2.125254
+Spain,Santana,41.876719,0.577812
+Spain,Montserrat,41.589972,1.825919
+Switzerland,Charmey,46.611502,7.193073
+Switzerland,Gastlosen,46.561634,7.257929
+Switzerland,Jensegg,46.622503,7.242318
+Switzerland,Rawyl,46.344753,7.434354
+Switzerland,Chli Schijen,47.011674,8.73485
+United Kingdom,Malham Cove,54.072786,-2.15722
+United Kingdom,Cheedale Cornice,53.255814,-1.775858
+United Kingdom,Malham,54.072786,-2.15722
+United Kingdom,Giggleswick,54.068257,-2.274226
+USA,Clark Mountain,35.528969,-115.572771
+USA,Fortress of Solitude,39.688815,-107.568249
+USA,Rumney,43.802463,-71.836161
